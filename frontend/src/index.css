@@ -4,7 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid greenyellow;
+  font-family: outfit;
+  /* border: 1px solid greenyellow; */
 
 }
 
@@ -65,4 +66,16 @@ a {
   border-radius: 5px;
   top: -8px;
   right: -8px;
+}
+
+@keyframes fadeIn {
+
+  0% {
+    opacity: 0;
+  }
+ 
+  100% {
+    opacity: 1;
+  }
+
 }
