@@ -9,29 +9,32 @@ const FoodItem = ({ id, name, price, description, image }) => {
       return (
             <div className='food-item'>
                   <div className="food-item-img-container" id={id}>
-                        <img className='food-item-image' src={image} alt="food-item-image" />
-                        {
-                              !cartItems[id]
-                                    ? <img
-                                          className='add'
-                                          onClick={() => addToCart(id)}
-                                          src={assets.add_icon_white}
-                                          alt='Add item to cart'
-                                    />
-                                    : <div className="food-item-counter">
-                                          <img
-                                                onClick={() => removefromCart(id)}
-                                                src={assets.remove_icon_red}
-                                                alt="Remove item from cart"
-                                          />
-                                          <p>{cartItems[id]}</p>
-                                          <img
+                        <div className='food-item-image'>
+                              <img className='food-item-image-icon' src={image} alt="food-item-image" />
+                              {
+                                    !cartItems[id]
+                                          ? <img
+                                                className='add'
                                                 onClick={() => addToCart(id)}
-                                                src={assets.add_icon_green}
-                                                alt="Add more of this item"
+                                                src={assets.add_icon_white}
+                                                alt='Add item to cart'
                                           />
-                                    </div>
-                        }
+                                          : <div className="food-item-counter">
+                                                <img
+                                                      onClick={() => removefromCart(id)}
+                                                      src={assets.remove_icon_red}
+                                                      alt="Remove item from cart"
+                                                />
+                                                <p>{cartItems[id]}</p>
+                                                <img
+                                                      onClick={() => addToCart(id)}
+                                                      src={assets.add_icon_green}
+                                                      alt="Add more of this item"
+                                                />
+                                          </div>
+                              }
+                        </div>
+
                         <div className="food-item-info">
                               <div className="food-item-name-rating">
                                     <p>{name}</p>
