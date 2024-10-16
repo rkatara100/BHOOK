@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import SmoothScroll from 'smooth-scroll';
 import { assets } from '../../assets/assets';
+import { useContext } from 'react';
+import { StoreContext } from '../../context/storeContext';
 
 const Navbar = ({ setShowLogin }) => {
       const [menu, setMenu] = useState("home");
+      const { getTotalAmmount } = useContext(StoreContext);
 
       useEffect(() => {
             const scroll = new SmoothScroll('a[href*="#"]', {
@@ -30,7 +33,7 @@ const Navbar = ({ setShowLogin }) => {
                         <img src={assets.search_icon} alt="" />
                         <div className="navbar-search-icon">
                               <Link to='/cart'> <img src={assets.basket_icon} alt="basket_icon" className="basket_icon" /></Link>
-                              <div className='dot'></div>
+                              <div className={getTotalAmmount() === 0 ? "" : "dot"}></div>
                         </div>
                         <button onClick={() => setShowLogin(true)}>sign in</button>
                   </div>

@@ -1,12 +1,12 @@
 import React from 'react'
 import '../Cart/Cart.css';
-
 import { StoreContext } from "../../context/storeContext";
 import { useContext } from 'react';
+import { assets } from '../../assets/assets';
 
 const Cart = () => {
 
-      const { food_list, cartItems, removefromCart } = useContext(StoreContext);
+      const { food_list, cartItems, removefromCart, getTotalAmmount } = useContext(StoreContext);
 
       return (
             <div className='cart'>
@@ -27,14 +27,14 @@ const Cart = () => {
                               if (cartItems[item._id] > 0) {
                                     return (
                                           <>
-                                                <div className="cart-items-title cart-items-item">
+                                                <div className="cart-items-title cart-items-item" key={index}>
 
                                                       <img src={item.image} alt="image" />
                                                       <p>{item.name}</p>
                                                       <p>${item.price}</p>
                                                       <p>{cartItems[item._id]}</p>
-                                                      <p>{item.price * cartItems[item._id]}</p>
-                                                      <p onClick={() => removefromCart(item._id)} className='cross'>X</p>
+                                                      <p>${item.price * cartItems[item._id]}</p>
+                                                      <p onClick={() => removefromCart(item._id)} className='cross'>x</p>
                                                 </div>
                                                 <hr />
                                           </>
@@ -42,6 +42,43 @@ const Cart = () => {
                               }
 
                         })}
+
+                  </div>
+
+                  <div className="cart-bottom">
+                        <div className="cart-total">
+                              <h2>Cart Total</h2>
+                              <div>
+                                    <div className="cart-total-details">
+                                          <p>SubTotal</p>
+                                          <p>${getTotalAmmount()}</p>
+                                    </div>
+                                    <hr />
+                                    <div className="cart-total-details">
+                                          <p>Delivery Fee</p>
+                                          <p> ${getTotalAmmount() === 0 ? 0 : 2}</p>
+                                    </div>
+                                    <hr />
+                                    <div className="cart-total-details">
+                                          <p>Total</p>
+                                          <p>${getTotalAmmount() === 0 ? 0 : getTotalAmmount() + 2}</p>
+                                    </div>
+                                    <hr />
+
+                              </div>
+                              <button>PROCEED TO CHECKOUT</button>
+
+                        </div>
+
+                        <div className='cart-promocode'>
+                              <div>
+                                    <p>If you have a promo code,Enter it Here,</p>
+                                    <div className="cart-promocode-input">
+                                          <input type="text" placeholder='Promo Code' />
+                                          <button type='submit'>Submit</button>
+                                    </div>
+                              </div>
+                        </div>
 
                   </div>
 
