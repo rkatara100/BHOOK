@@ -19,7 +19,7 @@
       font-size: 18px;
 }
 
-.navbar-menu li {
+.navbar-menu a {
       cursor: pointer;
 }
 

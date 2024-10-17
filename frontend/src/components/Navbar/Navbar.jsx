@@ -10,6 +10,7 @@ const Navbar = ({ setShowLogin }) => {
       const [menu, setMenu] = useState("home");
       const { getTotalAmmount } = useContext(StoreContext);
 
+      //for scrolling
       useEffect(() => {
             const scroll = new SmoothScroll('a[href*="#"]', {
                   speed: 500,
