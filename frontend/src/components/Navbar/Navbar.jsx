@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import SmoothScroll from 'smooth-scroll';
 import { assets } from '../../assets/assets';
@@ -8,9 +8,15 @@ import { StoreContext } from '../../context/storeContext';
 
 const Navbar = ({ setShowLogin }) => {
       const [menu, setMenu] = useState("home");
-      const { getTotalAmmount } = useContext(StoreContext);
+      const { getTotalAmmount, token, setToken } = useContext(StoreContext);
 
       const handleFunc = {
+
+      }
+      const Logout = () => {
+            localStorage.removeItem("token");
+            setToken("");
+            useNavigate("/");
 
       }
 
@@ -40,7 +46,27 @@ const Navbar = ({ setShowLogin }) => {
                               <Link to='/cart'> <img src={assets.basket_icon} alt="basket_icon" className="basket_icon" /></Link>
                               <div className={getTotalAmmount() === 0 ? "" : "dot"}></div>
                         </div>
-                        <button onClick={() => setShowLogin(true)}>sign in</button>
+
+                        {
+                              !token ? <button onClick={() => setShowLogin(true)}>sign in</button>
+                                    : <div className='navbar-profile'>
+                                          <img src={assets.profile_icon} alt="profile_img" />
+                                          <ul className='nav-profile-dropdown'>
+                                                <li>
+                                                      <img src={assets.bag_icon} alt="bag_icon" />
+                                                      <p>Orders</p>
+                                                </li>
+                                                <hr />
+
+                                                <li onClick={Logout}>
+                                                      <img src={assets.logout_icon} alt="logout_icon" />
+                                                      <p>Logout</p>
+                                                </li>
+
+                                          </ul>
+                                    </div>
+                        }
+
                   </div>
             </div>
       );
