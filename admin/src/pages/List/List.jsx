@@ -24,6 +24,7 @@ const List = () => {
             try {
                   setList(prevList => prevList.filter(item => item._id !== FoodId));
                   const response = await axios.post(`${url}/api/food/remove`, { id: FoodId });
+
                   if (!response.data.success) {
                         toast.error('Failed to remove food item');
                         fetchList();

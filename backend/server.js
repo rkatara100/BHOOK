@@ -1,7 +1,11 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from "express"
 import cors from "cors"
 import { mongodbConnection } from "./config/db.js";
 import foodRoute from './Routes/foodRoute.js';
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 const port = 4000;
@@ -17,8 +21,9 @@ mongodbConnection();
 
 //api Router
 app.use('/api/food', foodRoute);
-app.use('/images',express.static('uploads'));
- 
+app.use('/images', express.static('uploads'));
+app.use('/api/user', userRouter);
+
 
 
 app.get('/', (req, res) => {
