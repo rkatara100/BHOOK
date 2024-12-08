@@ -6,6 +6,7 @@ import cors from "cors"
 import { mongodbConnection } from "./config/db.js";
 import foodRoute from './Routes/foodRoute.js';
 import userRouter from "./routes/userRoute.js";
+import cartRouter from './routes/cartRoute.js';
 
 const app = express();
 const port = 4000;
@@ -23,6 +24,7 @@ mongodbConnection();
 app.use('/api/food', foodRoute);
 app.use('/images', express.static('uploads'));
 app.use('/api/user', userRouter);
+app.use("/api/cart", cartRouter);
 
 
 
