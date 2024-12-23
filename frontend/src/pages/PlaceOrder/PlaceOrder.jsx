@@ -3,6 +3,7 @@ import '../PlaceOrder/PlaceOrder.css';
 import { StoreContext } from '../../context/storeContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const PlaceOrder = () => {
       const navigate = useNavigate();
@@ -44,7 +45,9 @@ const PlaceOrder = () => {
             };
 
             try {
+                  // console.log(orderData)
                   let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+
 
                   if (response.data.success) {
                         const { session_url } = response.data;
@@ -54,7 +57,7 @@ const PlaceOrder = () => {
                         alert("Error: Order could not be placed.");
                   }
             } catch (error) {
-                  console.error("Error making the request:", error);
+                  console.log("Error making the request:", error);
                   alert("There was an error processing your order. Please try again.");
             }
       };
@@ -62,6 +65,19 @@ const PlaceOrder = () => {
       const handleOnClick = () => {
             navigate('/order'); // Navigate to '/order' route before form submission.
       };
+
+
+
+      useEffect(() => {
+            if (!token) {
+                  navigate('/cart');
+            }
+            else if (getTotalAmmount() === 0) {
+                  navigate('/cart');
+            }
+
+      }, [token])
+
 
       return (
             <form onSubmit={placeOrder} className='place-order'>

@@ -15,6 +15,7 @@ const placeOrder = async (req, res) => {
                   items: req.body.items,
                   amount: req.body.amount,
                   address: req.body.address,
+                  payment: false
             });
 
             await newOrder.save();
@@ -48,7 +49,6 @@ const placeOrder = async (req, res) => {
             });
 
             res.status(200).json({ success: true, session_url: session.url });
-
       } catch (error) {
             console.error(error);
             res.status(500).json({ success: false, message: "Error processing order" });
@@ -73,4 +73,19 @@ const verifyOrder = async (req, res) => {
 
 }
 
-export { placeOrder, verifyOrder };
+//user orders for Frontend
+
+const userOrders = async (req, res) => {
+      try {
+            console.log("hii form myorders!!!")
+            const orders = await orderModel.find({ userId: req.body.userId });
+            res.json({ success: true, data: orders });
+
+      } catch (error) {
+            console.log(error);
+            res.json({ success: false, message: "error" });
+      }
+}
+
+
+export { placeOrder, verifyOrder, userOrders };
