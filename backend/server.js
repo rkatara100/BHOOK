@@ -3,7 +3,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import { mongodbConnection } from "./config/db.js";
-import foodRoute from './Routes/foodRoute.js';
+import foodRouter from './Routes/foodRoute.js';
 import userRouter from "./routes/userRoute.js";
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
@@ -19,7 +19,7 @@ app.use(cors());
 mongodbConnection();
 
 // API Routes
-app.use('/api/food', foodRoute);
+app.use('/api/food', foodRouter);
 app.use('/images', express.static('uploads'));
 app.use('/api/user', userRouter);
 app.use("/api/cart", cartRouter);
