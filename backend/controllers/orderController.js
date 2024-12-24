@@ -87,5 +87,38 @@ const userOrders = async (req, res) => {
       }
 }
 
+//Listing orders for admin panel
 
-export { placeOrder, verifyOrder, userOrders };
+const listorders = async (req, res) => {
+
+      try {
+            const orders = await orderModel.find({});
+            console.log('list mai pahuche');
+            res.json({ success: true, data: orders });
+
+      }
+      catch (error) {
+            console.log(error);
+            res.json({ succes: true, message: "Error" });
+
+      }
+
+}
+
+const orderStatus = async (req, res) => {
+
+      try {
+            const orderId = req.body.orderId;
+            await orderModel.findByIdAndUpdate(orderId, { status: req.body.status });
+            res.json({ succes: true, message: "Status Updated" });
+
+      } catch (error) {
+            console.log(error);
+            res.json({ success: false, message: "Error" });
+
+      }
+}
+
+
+
+export { placeOrder, verifyOrder, userOrders, listorders, orderStatus };
