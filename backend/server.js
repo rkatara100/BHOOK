@@ -3,7 +3,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import { mongodbConnection } from "./config/db.js";
-import foodRouter from './Routes/foodRoute.js';
+import foodRouter from './routes/foodRoute.js';
 import userRouter from "./routes/userRoute.js";
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
