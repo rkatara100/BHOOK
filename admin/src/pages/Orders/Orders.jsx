@@ -7,13 +7,14 @@ import { assets } from '../../admin_assets/assets';
 const Orders = ({ url }) => {
 
       const [orders, setOrders] = useState([]);
-      const fetchAllOrders = async () => {
 
+      const fetchAllOrders = async () => {
             const response = await axios.get(url + "api/order/list");
+
+            console.log("fetch all orders " + response.data);
 
             if (response.data.success) {
                   setOrders(response.data.data);
-                  console.log(response.data.data);
             }
             else {
                   toast.error("Error");
@@ -27,6 +28,8 @@ const Orders = ({ url }) => {
                   orderId,
                   status: event.target.value
             });
+
+            console.log("statusHandler " + response.data.data);
 
             if (response.data.success) {
                   await fetchAllOrders();

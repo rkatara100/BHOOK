@@ -8,7 +8,7 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeOrder = async (req, res) => {
-      const Frontend_url = "http://localhost:5174`";
+      const Frontend_url = "http://localhost:5173";
       try {
             const newOrder = new orderModel({
                   userId: req.body.userId,
@@ -110,7 +110,7 @@ const orderStatus = async (req, res) => {
       try {
             const orderId = req.body.orderId;
             await orderModel.findByIdAndUpdate(orderId, { status: req.body.status });
-            res.json({ succes: true, message: "Status Updated" });
+            res.json({ success: true, message: "Status Updated" });
 
       } catch (error) {
             console.log(error);

@@ -54,7 +54,6 @@ const LoginPopup = ({ setShowLogin }) => {
                   console.error("Error during login or signup:", error);
 
                   if (error.response) {
-                        // Server responded with an error
                         console.log("Server Response:", error.response.data);
                   } else if (error.request) {
                         // No response received

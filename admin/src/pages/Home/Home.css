@@ -1,0 +1,52 @@
+.home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* border: 1px solid greenyellow; */
+      width: 90%;
+}
+
+h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+}
+
+.loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.dot {
+      width: 15px;
+      height: 15px;
+      margin: 0 5px;
+      border-radius: 50%;
+      background-color: rgb(106, 206, 245);
+      animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+      animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+      animation-delay: -0.16s;
+}
+
+.dot:nth-child(3) {
+      animation-delay: 0s;
+}
+
+@keyframes bounce {
+
+      0%,
+      100% {
+            transform: translateY(0);
+      }
+
+      50% {
+            transform: translateY(-20px);
+      }
+}
