@@ -12,7 +12,7 @@ import Home from './pages/Home/Home'
 
 function App() {
 
-  const url = "http://localhost:4000/";
+  const url = "https://bhook-backend.onrender.com";
 
   return (
     <div>
