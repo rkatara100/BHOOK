@@ -39,6 +39,27 @@
       cursor: pointer;
 }
 
+.password-input-container {
+      position: relative;
+      width: 100%;
+}
+
+.password-input-container input {
+      width: 100%;
+      padding-right: 35px;  
+}
+
+.eye-icon {
+      position: absolute;
+      right: 10px;  /* Position the icon inside the input field */
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;  /* Adjust the size of the eye icon */
+      cursor: pointer;
+      color: #808080;  /* You can adjust the color */
+}
+
+
 /* Input field styles */
 .login-popup-inputs {
       display: flex;

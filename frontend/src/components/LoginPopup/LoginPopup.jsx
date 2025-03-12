@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import './LoginPopup/LoginPopup.css';
 import { assets } from '../../assets/assets';
 import axios from "axios";
@@ -8,6 +8,8 @@ const LoginPopup = ({ setShowLogin }) => {
       const { url, setToken } = useContext(StoreContext);
 
       const [currState, setCurrState] = useState("SignUp");
+      const [passwordVisible, setPasswordVisible] = useState(false);
+
       const [data, setData] = useState({
             name: "",
             email: "",
@@ -78,7 +80,21 @@ const LoginPopup = ({ setShowLogin }) => {
                         <div className="login-popup-inputs">
                               {currState === "Login" ? "" : <><input name='name' onChange={onChangeHandler} type="text" value={data.name} placeholder='Your name' required /></>}
                               <input name='email' onChange={onChangeHandler} value={data.email} type="text" placeholder='Your Email' required />
-                              <input name='password' onChange={onChangeHandler} value={data.password} type="text" placeholder='Password' required />
+                              <div className="password-input-container">
+                                    <input 
+                                          name='password' 
+                                          onChange={onChangeHandler} 
+                                          value={data.password} 
+                                          type={passwordVisible ? "text" : "password"} 
+                                          placeholder='Password' 
+                                          required 
+                                    />
+                                    <i 
+                                          onClick={() => setPasswordVisible(!passwordVisible)} 
+                                          className={`eye-icon ${passwordVisible ? "fas fa-eye-slash" : "fas fa-eye"}`}
+                                    />
+                              </div>
+                              
                         </div>
 
                         <button type='submit'>{currState === "SignUp" ? "Create Account" : "Login"}</button>

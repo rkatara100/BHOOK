@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const StoreContext = createContext(null);
 
-const StoreContextProvider = (props) => {
+const StoreContextProvider = ({children}) => {
 
       const [cartItems, setCartItems] = useState({});
       const [token, setToken] = useState("");
@@ -85,7 +85,7 @@ const StoreContextProvider = (props) => {
 
       return (
             <StoreContext.Provider value={contextValue}>
-                  {props.children}
+                  {children}
             </StoreContext.Provider>
       )
 }
